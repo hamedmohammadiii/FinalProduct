@@ -1,0 +1,65 @@
+﻿@model List<FinalProduct.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>لیست محصولات</h2>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().CompanyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().CompanyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstOrDefault().Description)
+        </th>
+        <th>
+            <a asp-action="Create" class="btn btn-success"><i class="far fa-plus-square"></i> محصول</a>
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @item.Category.Name
+        </td>
+
+
+
+        <td>
+            @item.Company.EnglishName
+        </td>
+        <td>
+            @item.Company.PersianName
+        </td>
+
+
+
+        <td>
+            @item.Description
+        </td>
+
+        <td>
+            @item.Description
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { Id = item.Id }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Delete", "Delete", new { code = item.Id }, new { onclick = "return confirm('Are You Sure To Delete This Record?');", @class = "btn btn-danger" })
+        </td>
+
+    </tr>
+    }
+</table>
+

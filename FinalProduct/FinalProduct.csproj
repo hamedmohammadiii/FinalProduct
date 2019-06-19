@@ -98,7 +98,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\apple-fact.jpg" />
+    <Content Include="Content\img\dims.jpg" />
     <Content Include="Content\img\images.jpg" />
+    <Content Include="Content\img\KA_BSS_Suite_3 %281%29.png" />
+    <Content Include="Content\img\og__bem3u6u4usnm.png" />
     <Content Include="Content\img\parents-1024x100.jpg" />
     <Content Include="Content\img\parents-1200x100.jpg" />
     <Content Include="Content\Site.css" />
@@ -142,11 +146,13 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

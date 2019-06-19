@@ -1,0 +1,26 @@
+﻿@model FinalProduct.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>جزئیات</h2>
+
+
+    
+    <hr />
+    <div><h3>نوع محصول:</h3>@Html.DisplayFor(Model => Model.Category.Name)</div> 
+
+    <div><h3>شرکت سازنده:</h3>@Html.DisplayFor(Model => Model.Company.PersianName) </div>
+
+    <div><h3>نام محصول:</h3>@Html.DisplayFor(Model => Model.ModelName) </div>
+
+    <div><h3>توضیحات:</h3>@Html.DisplayFor(Model => Model.Description) </div>
+
+
+<br />
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id },new { @class = "btn btn-info" }) 
+    &nbsp
+    @Html.ActionLink("برگشت به لیست محصولات", "Index",new { name=""}, new { @class = "btn btn-primary" })
+</p>

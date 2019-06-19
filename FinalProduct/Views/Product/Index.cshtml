@@ -3,63 +3,88 @@
     ViewBag.Title = "Index";
 }
 
+@section Scripts
+    {
+
+    <script>
+        function removeProduct(Id) {
+            var confirmation = confirm("آیا از حذف این محصول مطمئن هستید؟");
+
+            if (confirmation) {
+
+                $.ajax(
+                    {
+                        url: '/Product/Remove',
+                        data: { code: Id }
+                    }).done(function (result) {
+                        if (result.isOk) {
+                            $('.' + Id).remove();
+                        }
+                    });
+            }
+        }
+       
+    </script>
+
+}
+
 <h2>لیست محصولات</h2>
+<br />
 
+<table class="table table-bordered table-striped table-hover">
 
-<table class="table table-striped">
     <tr>
-        <th>
+        <th style="text-align:center;">
             @Html.DisplayNameFor(x => x.FirstOrDefault().CategoryId)
         </th>
-        <th>
+        <th style="text-align:center;">
             @Html.DisplayNameFor(x => x.FirstOrDefault().CompanyId)
         </th>
-        <th>
-            @Html.DisplayNameFor(x => x.FirstOrDefault().CompanyId)
-        </th>
-        <th>
+        
+        <th style="text-align:center;">
             @Html.DisplayNameFor(x => x.FirstOrDefault().ModelName)
         </th>
-        <th>
+        <th style="text-align:center;">
             @Html.DisplayNameFor(x => x.FirstOrDefault().Description)
         </th>
-        <th>
-            <a asp-action="Create" class="btn btn-success"><i class="far fa-plus-square"></i> محصول</a>
+        <th style="text-align:center;">
+            @*Html.ActionLink("افزودن محصول", "Create", "Product", new { name = "" }, new { @class = "btn btn-primary" })*@
+            <a href="Product/Create" class="btn btn-primary"><i class="far fa-plus-square"></i> محصول</a>
         </th>
 
     </tr>
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @item.Category.Name
-        </td>
+        <tr class="@item.Id">
+
+            <td style="text-align:center;">
+                @item.Category.Name
+            </td>
+            
+            <td style="text-align:center;">
+                @item.Company.EnglishName
+                &nbsp/&nbsp
+                @item.Company.PersianName
+            </td>
 
 
 
-        <td>
-            @item.Company.EnglishName
-        </td>
-        <td>
-            @item.Company.PersianName
-        </td>
+            <td style="text-align:center;">
+                @item.ModelName
+            </td>
 
+            <td style="text-align:center;">
+                @item.Description
+            </td>
 
+            <td style="text-align:center;">
+                @*Html.ActionLink("ویرایش", "Edit", new { Id = item.Id }, new { @class = "btn btn-warning" })*@
+                <a href="Product/Edit/@item.Id"><i class="fa fa-marker fa-lg"></i></a> |
+                @*Html.ActionLink("حذف", "Delete", new { code = item.Id }, new { onclick = "return confirm('آیا مطمئن فستید؟');", @class = "btn btn-danger" })*@
+                <a href="Product/Details/@item.Id"><i class="fa fa-address-card fa-lg"></i></a> |
+                <a class="text-danger ml-1" onclick="removeProduct('@item.Id')"><i class="fa fa-trash-alt fa-lg"></i></a>
+            </td>
 
-        <td>
-            @item.Description
-        </td>
-
-        <td>
-            @item.Description
-        </td>
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { Id = item.Id }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Delete", "Delete", new { code = item.Id }, new { onclick = "return confirm('Are You Sure To Delete This Record?');", @class = "btn btn-danger" })
-        </td>
-
-    </tr>
+        </tr>
     }
 </table>
-

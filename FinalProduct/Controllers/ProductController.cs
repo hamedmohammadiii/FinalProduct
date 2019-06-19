@@ -59,9 +59,9 @@ namespace FinalProduct.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
-            var Entirty = db.Products.Find(Id);
+            var Entity = db.Products.Find(Id);
 
-            if(Entirty == null)
+            if(Entity == null)
             {
                 ViewBag.Message = "محصول مورد نظر یافت نشد.";
                 return RedirectToAction("Index");
@@ -75,7 +75,7 @@ namespace FinalProduct.Controllers
             var selectlist1 = new SelectList(Companies, "Id", "PersianName");
             ViewBag.Companies = selectlist1;
 
-            return View(Entirty);
+            return View(Entity);
         }
 
         [HttpPost]
@@ -109,5 +109,29 @@ namespace FinalProduct.Controllers
             return RedirectToAction("Index");
 
         }
+
+        public ActionResult Remove(int code)
+        {
+            var Entity = db.Products.FirstOrDefault(x => x.Id == code);
+
+            if (Entity == null)
+            {
+                ViewBag.Message = @"محصول یافت نشد";
+                return RedirectToAction("Index");
+            }
+
+            db.Products.Remove(Entity);
+            var isOk = db.SaveChanges() > 0;
+
+            return Json(new { isOk = isOk }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var entity = db.Products.Find(id);
+            return View(entity);
+        }
     }
+
+    
 }
